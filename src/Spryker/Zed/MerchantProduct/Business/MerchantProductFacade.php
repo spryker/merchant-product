@@ -30,4 +30,18 @@ class MerchantProductFacade extends AbstractFacade implements MerchantProductFac
     {
         return $this->getRepository()->findMerchant($merchantProductCriteriaTransfer);
     }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param int[] $idProductAbstractMerchants
+     *
+     * @return \Generated\Shared\Transfer\MerchantProductTransfer[]
+     */
+    public function findMerchantProducts(array $idProductAbstractMerchants): array
+    {
+        return $this->getRepository()->findMerchantProducts($idProductAbstractMerchants);
+    }
 }
