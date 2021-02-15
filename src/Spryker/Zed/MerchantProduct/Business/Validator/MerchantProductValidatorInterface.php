@@ -5,17 +5,17 @@
  * Use of this software requires acceptance of the Spryker Marketplace License Agreement. See LICENSE file.
  */
 
-namespace Spryker\Zed\MerchantProduct\Business\Updater;
+namespace Spryker\Zed\MerchantProduct\Business\Validator;
 
 use Generated\Shared\Transfer\MerchantProductTransfer;
-use Generated\Shared\Transfer\ProductAbstractResponseTransfer;
+use Generated\Shared\Transfer\ValidationResponseTransfer;
 
-interface ProductAbstractUpdaterInterface
+interface MerchantProductValidatorInterface
 {
     /**
      * @param \Generated\Shared\Transfer\MerchantProductTransfer $merchantProductTransfer
      *
-     * @return \Generated\Shared\Transfer\ProductAbstractResponseTransfer
+     * @return \Generated\Shared\Transfer\ValidationResponseTransfer
      */
-    public function updateProductAbstract(MerchantProductTransfer $merchantProductTransfer): ProductAbstractResponseTransfer;
+    public function validateMerchantProduct(MerchantProductTransfer $merchantProductTransfer): ValidationResponseTransfer;
 }
