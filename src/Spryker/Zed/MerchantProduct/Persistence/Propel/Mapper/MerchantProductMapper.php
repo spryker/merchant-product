@@ -86,7 +86,7 @@ class MerchantProductMapper
         foreach ($productEntities as $productEntity) {
             $productConcreteTransfer = (new ProductConcreteTransfer())->fromArray($productEntity->toArray(), true);
             $productConcreteTransfer->setIdProductConcrete($productEntity->getIdProduct());
-            $productConcreteTransfer->setAttributes($this->utilEncodingService->decodeJson($productEntity->getAttributes(), true));
+            $productConcreteTransfer->setAttributes($this->utilEncodingService->decodeJson($productEntity->getAttributes(), true) ?? []);
 
             foreach ($productEntity->getSpyProductLocalizedAttributess() as $productLocalizedAttributesEntity) {
                 $productConcreteTransfer->addLocalizedAttributes(
