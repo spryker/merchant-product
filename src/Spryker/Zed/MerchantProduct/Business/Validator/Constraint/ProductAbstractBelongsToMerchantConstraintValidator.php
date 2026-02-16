@@ -25,6 +25,7 @@ class ProductAbstractBelongsToMerchantConstraintValidator extends AbstractConstr
      */
     public function validate($value, Constraint $constraint): void
     {
+        /** @phpstan-ignore instanceof.alwaysTrue */
         if (!$value instanceof MerchantProductTransfer) {
             throw new UnexpectedTypeException($value, MerchantProductTransfer::class);
         }
