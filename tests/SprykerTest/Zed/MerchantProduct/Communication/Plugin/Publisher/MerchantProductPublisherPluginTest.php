@@ -5,7 +5,7 @@
  * Use of this software requires acceptance of the Spryker Marketplace License Agreement. See LICENSE file.
  */
 
-namespace SprykerTest\Zed\MerchantProduct\Communication\Plugin\Event\Listener;
+namespace SprykerTest\Zed\MerchantProduct\Communication\Plugin\Publisher;
 
 use Codeception\Test\Unit;
 use Generated\Shared\Transfer\EventEntityTransfer;
@@ -23,8 +23,7 @@ use SprykerTest\Zed\MerchantProduct\MerchantProductCommunicationTester;
  * @group MerchantProduct
  * @group Communication
  * @group Plugin
- * @group Event
- * @group Listener
+ * @group Publisher
  * @group MerchantProductPublisherPluginTest
  * Add your own group annotations below this line
  */
