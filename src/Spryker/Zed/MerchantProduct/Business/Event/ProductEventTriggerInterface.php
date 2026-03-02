@@ -11,10 +11,5 @@ use Generated\Shared\Transfer\MerchantProductCriteriaTransfer;
 
 interface ProductEventTriggerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer
-     *
-     * @return void
-     */
     public function trigger(MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer): void;
 }

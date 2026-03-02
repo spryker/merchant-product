@@ -17,11 +17,6 @@ class MerchantProductHelper extends Module
 {
     use DataCleanupHelperTrait;
 
-    /**
-     * @param array $seedData
-     *
-     * @return \Generated\Shared\Transfer\MerchantProductTransfer
-     */
     public function haveMerchantProduct(array $seedData = []): MerchantProductTransfer
     {
         $merchantProductAbstractEntity = new SpyMerchantProductAbstract();
@@ -39,12 +34,6 @@ class MerchantProductHelper extends Module
             ->setIdProductAbstract($merchantProductAbstractEntity->getFkProductAbstract());
     }
 
-    /**
-     * @param int $idMerchant
-     * @param int $idProductAbstract
-     *
-     * @return int
-     */
     public function addMerchantProductRelation(int $idMerchant, int $idProductAbstract): int
     {
         $merchantProductAbstract = $this->getMerchantProductAbstractPropelQuery()
@@ -61,9 +50,6 @@ class MerchantProductHelper extends Module
         return $merchantProductAbstract->getIdMerchantProductAbstract();
     }
 
-    /**
-     * @return \Orm\Zed\MerchantProduct\Persistence\SpyMerchantProductAbstractQuery
-     */
     protected function getMerchantProductAbstractPropelQuery(): SpyMerchantProductAbstractQuery
     {
         return SpyMerchantProductAbstractQuery::create();

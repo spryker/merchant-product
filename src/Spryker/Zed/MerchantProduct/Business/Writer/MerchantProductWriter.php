@@ -25,10 +25,6 @@ class MerchantProductWriter implements MerchantProductWriterInterface
      */
     protected $merchantProductRepository;
 
-    /**
-     * @param \Spryker\Zed\MerchantProduct\Persistence\MerchantProductEntityManagerInterface $entityManager
-     * @param \Spryker\Zed\MerchantProduct\Persistence\MerchantProductRepositoryInterface $merchantProductRepository
-     */
     public function __construct(MerchantProductEntityManagerInterface $entityManager, MerchantProductRepositoryInterface $merchantProductRepository)
     {
         $this->entityManager = $entityManager;

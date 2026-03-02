@@ -34,9 +34,6 @@ class MerchantProductPublisherPluginTest extends Unit
      */
     protected MerchantProductCommunicationTester $tester;
 
-    /**
-     * @return void
-     */
     public function testMerchantSearchEventListenerStoresData(): void
     {
         // Arrange

@@ -38,9 +38,6 @@ class HydrateCartReorderItemsWithMerchantReferenceTest extends Unit
      */
     protected MerchantProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testShouldAddReorderItemsWithMerchantReferenceWhenItemWasNotAddedToReorderItems(): void
     {
         // Arrange
@@ -70,9 +67,6 @@ class HydrateCartReorderItemsWithMerchantReferenceTest extends Unit
         $this->assertSame($orderItemTransfers[1]->getQuantityOrFail(), $reorderItemTransfer->getQuantity());
     }
 
-    /**
-     * @return void
-     */
     public function testShouldAddMerchantReferenceToReorderItemWhenItemWasPreviouslyAddedToReorderItems(): void
     {
         // Arrange
@@ -104,9 +98,6 @@ class HydrateCartReorderItemsWithMerchantReferenceTest extends Unit
         $this->assertSame(static::TEST_MERCHANT_REFERENCE, $reorderItemTransfer->getMerchantReference());
     }
 
-    /**
-     * @return void
-     */
     public function testShouldDoNothingWhenNoItemsWithMerchantReferenceProvided(): void
     {
         // Arrange

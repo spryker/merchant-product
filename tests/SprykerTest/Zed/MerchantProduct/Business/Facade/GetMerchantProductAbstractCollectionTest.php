@@ -32,9 +32,6 @@ class GetMerchantProductAbstractCollectionTest extends Unit
      */
     protected MerchantProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testGetMerchantProductAbstractCollectionReturnsCollectionWithFiveAbstractProductsWhileHavingLimitOffsetPaginationApplied(): void
     {
         // Arrange

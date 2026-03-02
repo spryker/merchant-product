@@ -37,11 +37,6 @@ class MerchantProductCommunicationTester extends Actor
 {
     use _generated\MerchantProductCommunicationTesterActions;
 
-    /**
-     * @param int $idProductAbstract
-     *
-     * @return void
-     */
     public function setDependencyWithExpectedCall(int $idProductAbstract): void
     {
         $eventFacadeMock = Stub::makeEmpty(MerchantProductToEventFacadeInterface::class);

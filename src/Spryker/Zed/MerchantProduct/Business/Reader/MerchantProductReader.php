@@ -30,10 +30,6 @@ class MerchantProductReader implements MerchantProductReaderInterface
      */
     protected $productFacade;
 
-    /**
-     * @param \Spryker\Zed\MerchantProduct\Persistence\MerchantProductRepositoryInterface $merchantProductRepository
-     * @param \Spryker\Zed\MerchantProduct\Dependency\Facade\MerchantProductToProductFacadeInterface $productFacade
-     */
     public function __construct(
         MerchantProductRepositoryInterface $merchantProductRepository,
         MerchantProductToProductFacadeInterface $productFacade
@@ -42,11 +38,6 @@ class MerchantProductReader implements MerchantProductReaderInterface
         $this->productFacade = $productFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantProductTransfer|null
-     */
     public function findMerchantProduct(
         MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer
     ): ?MerchantProductTransfer {
@@ -63,11 +54,6 @@ class MerchantProductReader implements MerchantProductReaderInterface
         return $merchantProductTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductConcreteCollectionTransfer
-     */
     public function getProductConcreteCollection(
         MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer
     ): ProductConcreteCollectionTransfer {
@@ -123,12 +109,6 @@ class MerchantProductReader implements MerchantProductReaderInterface
         return null;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductConcreteTransfer $productConcreteTransfer
-     * @param \Generated\Shared\Transfer\MerchantTransfer $merchantTransfer
-     *
-     * @return bool
-     */
     public function isProductConcreteOwnedByMerchant(
         ProductConcreteTransfer $productConcreteTransfer,
         MerchantTransfer $merchantTransfer
@@ -142,12 +122,6 @@ class MerchantProductReader implements MerchantProductReaderInterface
         return $merchantTransfer !== null;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
-     * @param \Generated\Shared\Transfer\MerchantTransfer $merchantTransfer
-     *
-     * @return bool
-     */
     public function isProductAbstractOwnedByMerchant(
         ProductAbstractTransfer $productAbstractTransfer,
         MerchantTransfer $merchantTransfer

@@ -52,9 +52,6 @@ class MerchantProductFacadeTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function testFindMerchantReturnsMerchant(): void
     {
         // Arrange
@@ -76,9 +73,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertSame($expectedMerchantTransfer->getName(), $merchantTransfer->getName());
     }
 
-    /**
-     * @return void
-     */
     public function testFindMerchantForNotExistingMerchantProductReturnsNull(): void
     {
         // Arrange
@@ -93,9 +87,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertNull($merchantTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testGetByIdProductAbstract(): void
     {
         // Arrange
@@ -116,9 +107,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertCount(1, $merchantProductCollectionTransfer->getMerchantProducts());
     }
 
-    /**
-     * @return void
-     */
     public function testGetByIdMerchantProductAbstracts(): void
     {
         // Arrange
@@ -145,9 +133,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertCount(2, $merchantProductCollectionTransfer->getMerchantProducts());
     }
 
-    /**
-     * @return void
-     */
     public function testGetByIdMerchants(): void
     {
         // Arrange
@@ -175,9 +160,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertCount(2, $merchantProductCollectionTransfer->getMerchantProducts());
     }
 
-    /**
-     * @return void
-     */
     public function testGetBySkus(): void
     {
         // Arrange
@@ -206,9 +188,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertCount(2, $merchantProductCollectionTransfer->getMerchantProducts());
     }
 
-    /**
-     * @return void
-     */
     public function testValidateCartChangeIgnoresGenericProducts(): void
     {
         // Arrange
@@ -226,9 +205,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertEmpty($cartPreCheckResponseTransfer->getMessages());
     }
 
-    /**
-     * @return void
-     */
     public function testValidateCartChangeIgnoresItemsWithProductOfferReference(): void
     {
         // Arrange
@@ -247,9 +223,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertEmpty($cartPreCheckResponseTransfer->getMessages());
     }
 
-    /**
-     * @return void
-     */
     public function testValidateCartChangeFailsForInvalidMerchantProducts(): void
     {
         // Arrange
@@ -268,9 +241,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertNotEmpty($cartPreCheckResponseTransfer->getMessages());
     }
 
-    /**
-     * @return void
-     */
     public function testValidateCartChangeSuccessForValidMerchantProduct(): void
     {
         // Arrange
@@ -300,9 +270,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertEmpty($cartPreCheckResponseTransfer->getMessages());
     }
 
-    /**
-     * @return void
-     */
     public function testFindMerchantProductFindsExistingProductByIdProductAbstractAndIdMerchant(): void
     {
         // Arrange
@@ -329,9 +296,6 @@ class MerchantProductFacadeTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testFindMerchantProductReturnsNullIfMerchantProductDoesNotExist(): void
     {
         // Arrange
@@ -350,9 +314,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertNull($merchantProductTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testValidateMerchantProductIsSuccessful(): void
     {
         // Arrange
@@ -371,9 +332,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertTrue($validationResponseTransfer->getIsSuccess());
     }
 
-    /**
-     * @return void
-     */
     public function testValidateMerchantProductFailsIfAbstractProductDoesNotBelongToMerchant(): void
     {
         // Arrange
@@ -393,9 +351,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertFalse($validationResponseTransfer->getIsSuccess());
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductConcreteCollectionByIdMerchant(): void
     {
         // Arrange
@@ -425,9 +380,6 @@ class MerchantProductFacadeTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductConcreteCollectionByIdMerchantAndIdProductAbstract(): void
     {
         // Arrange
@@ -458,9 +410,6 @@ class MerchantProductFacadeTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductConcreteCollectionByIdMerchantAndIdProductConcrete(): void
     {
         // Arrange
@@ -491,9 +440,6 @@ class MerchantProductFacadeTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testFindProductConcreteFindsConcreteProductByIdProductConcrete(): void
     {
         // Arrange
@@ -520,9 +466,6 @@ class MerchantProductFacadeTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testFindProductConcreteFindsConcreteProductByIdMerchantProductAbstract(): void
     {
         // Arrange
@@ -552,9 +495,6 @@ class MerchantProductFacadeTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testFindProductConcreteFindsConcreteProductByFkProductAbstract(): void
     {
         // Arrange
@@ -584,9 +524,6 @@ class MerchantProductFacadeTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testFindProductConcreteReturnsNullIfMerchantProductDoesNotExist(): void
     {
         // Arrange
@@ -604,9 +541,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertNull($merchantProductConcreteTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testIsProductConcreteOwnedByMerchantReturnsTrueIfMerchantOwnsTheProduct(): void
     {
         // Arrange
@@ -628,9 +562,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertTrue($isProductConcreteOwnedByMerchant);
     }
 
-    /**
-     * @return void
-     */
     public function testIsProductConcreteOwnedByMerchantReturnsFalseIfMerchantDoesNotOwnTheProduct(): void
     {
         // Arrange
@@ -658,9 +589,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertFalse($isProductConcreteOwnedByMerchant);
     }
 
-    /**
-     * @return void
-     */
     public function testCreateCreatesRelationBetweenProductAbstractAndMerchantProduct(): void
     {
         // Arrange
@@ -689,9 +617,6 @@ class MerchantProductFacadeTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testCreateThrowsExceptionWhenIdMerchantIsNotSet(): void
     {
         // Arrange
@@ -705,9 +630,6 @@ class MerchantProductFacadeTest extends Unit
         $this->tester->getFacade()->create($merchantProductTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testCreateThrowsExceptionWhenMerchantProductExists(): void
     {
         // Arrange
@@ -728,9 +650,6 @@ class MerchantProductFacadeTest extends Unit
         $this->tester->getFacade()->create($merchantProductTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testCreateThrowsExceptionWhenIdProductAbstractIsNotSet(): void
     {
         // Arrange
@@ -744,9 +663,6 @@ class MerchantProductFacadeTest extends Unit
         $this->tester->getFacade()->create($merchantProductTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testIsProductAbstractOwnedByMerchantReturnsTrueIfMerchantOwnsTheProduct(): void
     {
         // Arrange
@@ -768,9 +684,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertTrue($isProductAbstractOwnedByMerchant);
     }
 
-    /**
-     * @return void
-     */
     public function testIsProductAbstractOwnedByMerchantReturnsFalseIfMerchantDoesNotOwnTheProduct(): void
     {
         // Arrange
@@ -798,9 +711,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertFalse($isProductAbstractOwnedByMerchant);
     }
 
-    /**
-     * @return void
-     */
     public function testCheckMerchantProductMerchantActiveAndApprovedSuccess(): void
     {
         // Arrange
@@ -814,9 +724,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertEmpty($shoppingListPreAddItemCheckResponseTransfer->getMessages());
     }
 
-    /**
-     * @return void
-     */
     public function testCheckMerchantProductMerchantInactiveAndApprovedFails(): void
     {
         // Arrange
@@ -830,9 +737,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertCount(1, $shoppingListPreAddItemCheckResponseTransfer->getMessages());
     }
 
-    /**
-     * @return void
-     */
     public function testCheckMerchantProductMerchantActiveAndUnapprovedFails(): void
     {
         // Arrange
@@ -846,9 +750,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertCount(1, $shoppingListPreAddItemCheckResponseTransfer->getMessages());
     }
 
-    /**
-     * @return void
-     */
     public function testCheckMerchantProductMerchantInactiveAndUnapprovedFails(): void
     {
         // Arrange
@@ -862,9 +763,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertCount(2, $shoppingListPreAddItemCheckResponseTransfer->getMessages());
     }
 
-    /**
-     * @return void
-     */
     public function testGetRetrievesMerchantProductsByProductAbstractIds(): void
     {
         // Arrange
@@ -899,12 +797,6 @@ class MerchantProductFacadeTest extends Unit
         $this->assertCount(2, $merchantProductCollectionTransfer->getMerchantProducts());
     }
 
-    /**
-     * @param int $idMerchant
-     * @param int $idProductAbstract
-     *
-     * @return \Generated\Shared\Transfer\MerchantProductTransfer
-     */
     protected function createMerchantProduct(int $idMerchant, int $idProductAbstract): MerchantProductTransfer
     {
         return $this->tester->haveMerchantProduct([
@@ -913,12 +805,6 @@ class MerchantProductFacadeTest extends Unit
         ]);
     }
 
-    /**
-     * @param bool $isActiveStatus
-     * @param string $merchantStatus
-     *
-     * @return \Generated\Shared\Transfer\ShoppingListItemTransfer
-     */
     protected function createShoppingListItem(bool $isActiveStatus, string $merchantStatus): ShoppingListItemTransfer
     {
         $merchantTransfer = $this->tester->haveMerchant([

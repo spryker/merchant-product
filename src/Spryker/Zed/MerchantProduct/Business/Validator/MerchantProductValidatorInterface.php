@@ -12,10 +12,5 @@ use Generated\Shared\Transfer\ValidationResponseTransfer;
 
 interface MerchantProductValidatorInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductTransfer $merchantProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\ValidationResponseTransfer
-     */
     public function validateMerchantProduct(MerchantProductTransfer $merchantProductTransfer): ValidationResponseTransfer;
 }

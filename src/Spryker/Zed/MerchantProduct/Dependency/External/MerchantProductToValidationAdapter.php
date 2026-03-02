@@ -12,9 +12,6 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class MerchantProductToValidationAdapter implements MerchantProductToValidationAdapterInterface
 {
-    /**
-     * @return \Symfony\Component\Validator\Validator\ValidatorInterface
-     */
     public function createValidator(): ValidatorInterface
     {
         return Validation::createValidator();

@@ -16,11 +16,6 @@ use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
  */
 class MerchantProductEntityManager extends AbstractEntityManager implements MerchantProductEntityManagerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductTransfer $merchantProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantProductTransfer
-     */
     public function create(MerchantProductTransfer $merchantProductTransfer): MerchantProductTransfer
     {
         $merchantProductMapper = $this->getFactory()->createMerchantProductMapper();

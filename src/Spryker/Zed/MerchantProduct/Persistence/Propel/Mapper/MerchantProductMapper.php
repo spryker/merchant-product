@@ -24,20 +24,11 @@ class MerchantProductMapper
      */
     protected $utilEncodingService;
 
-    /**
-     * @param \Spryker\Zed\MerchantProduct\Dependency\Service\MerchantProductToUtilEncodingServiceInterface $utilEncodingService
-     */
     public function __construct(MerchantProductToUtilEncodingServiceInterface $utilEncodingService)
     {
         $this->utilEncodingService = $utilEncodingService;
     }
 
-    /**
-     * @param \Orm\Zed\MerchantProduct\Persistence\SpyMerchantProductAbstract $merchantProductAbstractEntity
-     * @param \Generated\Shared\Transfer\MerchantProductTransfer $merchantProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantProductTransfer
-     */
     public function mapMerchantProductAbstractEntityToMerchantProductTransfer(
         SpyMerchantProductAbstract $merchantProductAbstractEntity,
         MerchantProductTransfer $merchantProductTransfer
@@ -56,12 +47,6 @@ class MerchantProductMapper
         return $merchantProductTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductTransfer $merchantProductTransfer
-     * @param \Orm\Zed\MerchantProduct\Persistence\SpyMerchantProductAbstract $merchantProductAbstractEntity
-     *
-     * @return \Orm\Zed\MerchantProduct\Persistence\SpyMerchantProductAbstract
-     */
     public function mapMerchantProductTransferToMerchantProductAbstractEntity(
         MerchantProductTransfer $merchantProductTransfer,
         SpyMerchantProductAbstract $merchantProductAbstractEntity
@@ -100,12 +85,6 @@ class MerchantProductMapper
         return $merchantProductTransfer;
     }
 
-    /**
-     * @param \Orm\Zed\Product\Persistence\SpyProductLocalizedAttributes $productLocalizedAttributesEntity
-     * @param \Generated\Shared\Transfer\LocalizedAttributesTransfer $localizedAttributesTransfer
-     *
-     * @return \Generated\Shared\Transfer\LocalizedAttributesTransfer
-     */
     protected function mapProductLocalizedAttributesEntityToTransfer(
         SpyProductLocalizedAttributes $productLocalizedAttributesEntity,
         LocalizedAttributesTransfer $localizedAttributesTransfer
@@ -122,12 +101,6 @@ class MerchantProductMapper
         return $localizedAttributesTransfer;
     }
 
-    /**
-     * @param \Orm\Zed\Locale\Persistence\SpyLocale $localeEntity
-     * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
-     *
-     * @return \Generated\Shared\Transfer\LocaleTransfer
-     */
     protected function mapLocaleEntityToTransfer(SpyLocale $localeEntity, LocaleTransfer $localeTransfer): LocaleTransfer
     {
         return $localeTransfer->fromArray(

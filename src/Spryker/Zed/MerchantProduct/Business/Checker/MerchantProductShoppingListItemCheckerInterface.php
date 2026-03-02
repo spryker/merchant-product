@@ -12,10 +12,5 @@ use Generated\Shared\Transfer\ShoppingListPreAddItemCheckResponseTransfer;
 
 interface MerchantProductShoppingListItemCheckerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ShoppingListItemTransfer $shoppingListItemTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShoppingListPreAddItemCheckResponseTransfer
-     */
     public function check(ShoppingListItemTransfer $shoppingListItemTransfer): ShoppingListPreAddItemCheckResponseTransfer;
 }

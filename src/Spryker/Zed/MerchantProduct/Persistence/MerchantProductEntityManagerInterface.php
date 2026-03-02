@@ -11,10 +11,5 @@ use Generated\Shared\Transfer\MerchantProductTransfer;
 
 interface MerchantProductEntityManagerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductTransfer $merchantProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantProductTransfer
-     */
     public function create(MerchantProductTransfer $merchantProductTransfer): MerchantProductTransfer;
 }

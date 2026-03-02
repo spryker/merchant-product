@@ -19,9 +19,6 @@ use Spryker\Zed\MerchantProduct\MerchantProductDependencyProvider;
  */
 class MerchantProductCommunicationFactory extends AbstractCommunicationFactory
 {
-    /**
-     * @return \Spryker\Zed\MerchantProduct\Dependency\Facade\MerchantProductToEventBehaviorFacadeInterface
-     */
     public function getEventBehaviorFacade(): MerchantProductToEventBehaviorFacadeInterface
     {
         return $this->getProvidedDependency(MerchantProductDependencyProvider::FACADE_EVENT_BEHAVIOR);

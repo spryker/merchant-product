@@ -13,11 +13,6 @@ use Generated\Shared\Transfer\ItemTransfer;
 
 class CartReorderItemHydrator implements CartReorderItemHydratorInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\CartReorderTransfer $cartReorderTransfer
-     *
-     * @return \Generated\Shared\Transfer\CartReorderTransfer
-     */
     public function hydrate(CartReorderTransfer $cartReorderTransfer): CartReorderTransfer
     {
         $itemsWithMerchantReference = $this->extractItemsWithMerchantReference($cartReorderTransfer->getOrderItems());
@@ -72,13 +67,6 @@ class CartReorderItemHydrator implements CartReorderItemHydratorInterface
         return $indexedItemTransfers;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CartReorderTransfer $cartReorderTransfer
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     * @param int $index
-     *
-     * @return void
-     */
     protected function addReorderItem(CartReorderTransfer $cartReorderTransfer, ItemTransfer $itemTransfer, int $index): void
     {
         $reorderItemTransfer = (new ItemTransfer())

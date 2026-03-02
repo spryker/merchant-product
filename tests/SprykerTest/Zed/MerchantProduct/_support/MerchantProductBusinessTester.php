@@ -33,28 +33,17 @@ class MerchantProductBusinessTester extends Actor
 {
     use _generated\MerchantProductBusinessTesterActions;
 
-    /**
-     * @return void
-     */
     public function ensureMerchantProductAbstractTableIsEmpty(): void
     {
         $merchantProductAbstractQuery = $this->getMerchantProductAbstractPropelQuery();
         $merchantProductAbstractQuery->deleteAll();
     }
 
-    /**
-     * @return \Orm\Zed\MerchantProduct\Persistence\SpyMerchantProductAbstractQuery
-     */
     protected function getMerchantProductAbstractPropelQuery(): SpyMerchantProductAbstractQuery
     {
         return SpyMerchantProductAbstractQuery::create();
     }
 
-    /**
-     * @param int $productAbstractId
-     *
-     * @return \Generated\Shared\Transfer\ProductAbstractTransfer|null
-     */
     public function findProductAbstractById(int $productAbstractId): ?ProductAbstractTransfer
     {
         $productAbstractEntity = SpyProductAbstractQuery::create()->findOneByIdProductAbstract($productAbstractId);
@@ -68,11 +57,6 @@ class MerchantProductBusinessTester extends Actor
         return $productAbstractTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantProductTransfer|null
-     */
     public function findMerchantProduct(
         MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer
     ): ?MerchantProductTransfer {

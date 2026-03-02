@@ -25,11 +25,6 @@ use Spryker\Zed\Kernel\Persistence\AbstractRepository;
  */
 class MerchantProductRepository extends AbstractRepository implements MerchantProductRepositoryInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantTransfer|null
-     */
     public function findMerchant(MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer): ?MerchantTransfer
     {
         $merchantProductAbstractQuery = $this->getFactory()
@@ -48,11 +43,6 @@ class MerchantProductRepository extends AbstractRepository implements MerchantPr
             ->mapMerchantEntityToMerchantTransfer($merchantProductAbstractEntity->getMerchant(), new MerchantTransfer());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantProductCollectionTransfer
-     */
     public function get(MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer): MerchantProductCollectionTransfer
     {
         /** @var \Orm\Zed\MerchantProduct\Persistence\SpyMerchantProductAbstractQuery $merchantProductAbstractQuery */
@@ -104,11 +94,6 @@ class MerchantProductRepository extends AbstractRepository implements MerchantPr
         return $concreteProductSkuMerchantReferenceMap->toKeyValue(SpyProductTableMap::COL_SKU, SpyMerchantTableMap::COL_MERCHANT_REFERENCE);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantProductTransfer|null
-     */
     public function findMerchantProduct(
         MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer
     ): ?MerchantProductTransfer {
@@ -127,11 +112,6 @@ class MerchantProductRepository extends AbstractRepository implements MerchantPr
         );
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductAbstractCriteriaTransfer $merchantProductAbstractCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantProductAbstractCollectionTransfer
-     */
     public function getMerchantProductAbstractCollection(
         MerchantProductAbstractCriteriaTransfer $merchantProductAbstractCriteriaTransfer
     ): MerchantProductAbstractCollectionTransfer {
@@ -170,12 +150,6 @@ class MerchantProductRepository extends AbstractRepository implements MerchantPr
             ->getData();
     }
 
-    /**
-     * @param \Orm\Zed\MerchantProduct\Persistence\SpyMerchantProductAbstractQuery $merchantProductAbstractQuery
-     * @param \Generated\Shared\Transfer\MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer
-     *
-     * @return \Orm\Zed\MerchantProduct\Persistence\SpyMerchantProductAbstractQuery
-     */
     protected function applyFilters(
         SpyMerchantProductAbstractQuery $merchantProductAbstractQuery,
         MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer
@@ -217,12 +191,6 @@ class MerchantProductRepository extends AbstractRepository implements MerchantPr
         return $merchantProductAbstractQuery;
     }
 
-    /**
-     * @param \Orm\Zed\MerchantProduct\Persistence\SpyMerchantProductAbstractQuery $merchantProductAbstractQuery
-     * @param \Generated\Shared\Transfer\PaginationTransfer $paginationTransfer
-     *
-     * @return \Orm\Zed\MerchantProduct\Persistence\SpyMerchantProductAbstractQuery
-     */
     protected function applyMerchantProductAbstractPagination(
         SpyMerchantProductAbstractQuery $merchantProductAbstractQuery,
         PaginationTransfer $paginationTransfer

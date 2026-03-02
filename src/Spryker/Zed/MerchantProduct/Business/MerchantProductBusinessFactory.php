@@ -39,9 +39,6 @@ use Symfony\Component\Validator\Constraint;
  */
 class MerchantProductBusinessFactory extends AbstractBusinessFactory
 {
-    /**
-     * @return \Spryker\Zed\MerchantProduct\Business\Validator\MerchantProductCartValidatorInterface
-     */
     public function createMerchantProductCartValidator(): MerchantProductCartValidatorInterface
     {
         return new MerchantProductCartValidator(
@@ -49,9 +46,6 @@ class MerchantProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantProduct\Business\Reader\MerchantProductReaderInterface
-     */
     public function createMerchantProductReader(): MerchantProductReaderInterface
     {
         return new MerchantProductReader(
@@ -60,9 +54,6 @@ class MerchantProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantProduct\Business\Writer\MerchantProductWriterInterface
-     */
     public function createMerchantProductWriter(): MerchantProductWriterInterface
     {
         return new MerchantProductWriter(
@@ -71,9 +62,6 @@ class MerchantProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantProduct\Business\Validator\MerchantProductValidatorInterface
-     */
     public function createMerchantProductValidator(): MerchantProductValidatorInterface
     {
         return new MerchantProductValidator(
@@ -82,9 +70,6 @@ class MerchantProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantProduct\Business\Event\ProductEventTriggerInterface
-     */
     public function createProductEventTrigger(): ProductEventTriggerInterface
     {
         return new ProductEventTrigger($this->getRepository(), $this->getEventFacade());
@@ -100,17 +85,11 @@ class MerchantProductBusinessFactory extends AbstractBusinessFactory
         ];
     }
 
-    /**
-     * @return \Symfony\Component\Validator\Constraint
-     */
     public function createProductAbstractBelongsToMerchantConstraint(): Constraint
     {
         return new ProductAbstractBelongsToMerchantConstraint($this->getRepository());
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantProduct\Business\Expander\ShoppingListItemExpanderInterface
-     */
     public function createShoppingListItemExpander(): ShoppingListItemExpanderInterface
     {
         return new ShoppingListItemExpander(
@@ -118,33 +97,21 @@ class MerchantProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantProduct\Business\Hydrator\CartReorderItemHydratorInterface
-     */
     public function createCartReorderItemHydrator(): CartReorderItemHydratorInterface
     {
         return new CartReorderItemHydrator();
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantProduct\Dependency\Facade\MerchantProductToProductFacadeInterface
-     */
     public function getProductFacade(): MerchantProductToProductFacadeInterface
     {
         return $this->getProvidedDependency(MerchantProductDependencyProvider::FACADE_PRODUCT);
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantProduct\Dependency\External\MerchantProductToValidationAdapterInterface
-     */
     public function getValidationAdapter(): MerchantProductToValidationAdapterInterface
     {
         return $this->getProvidedDependency(MerchantProductDependencyProvider::EXTERNAL_ADAPTER_VALIDATION);
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantProduct\Business\Checker\MerchantProductShoppingListItemCheckerInterface
-     */
     public function createMerchantProductShoppingListItemChecker(): MerchantProductShoppingListItemCheckerInterface
     {
         return new MerchantProductShoppingListItemChecker(
@@ -152,17 +119,11 @@ class MerchantProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantProduct\Dependency\Facade\MerchantProductToMerchantFacadeInterface
-     */
     public function getMerchantFacade(): MerchantProductToMerchantFacadeInterface
     {
         return $this->getProvidedDependency(MerchantProductDependencyProvider::FACADE_MERCHANT);
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantProduct\Dependency\Facade\MerchantProductToEventFacadeInterface
-     */
     public function getEventFacade(): MerchantProductToEventFacadeInterface
     {
         return $this->getProvidedDependency(MerchantProductDependencyProvider::FACADE_EVENT);

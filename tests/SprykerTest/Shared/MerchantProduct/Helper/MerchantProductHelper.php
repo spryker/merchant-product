@@ -16,11 +16,6 @@ class MerchantProductHelper extends Module
 {
     use DataCleanupHelperTrait;
 
-    /**
-     * @param array $seedData
-     *
-     * @return \Generated\Shared\Transfer\MerchantProductTransfer
-     */
     public function haveMerchantProduct(array $seedData = []): MerchantProductTransfer
     {
         $merchantProductAbstractEntity = new SpyMerchantProductAbstract();

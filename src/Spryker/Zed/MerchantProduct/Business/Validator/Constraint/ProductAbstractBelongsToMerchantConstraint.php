@@ -22,9 +22,6 @@ class ProductAbstractBelongsToMerchantConstraint extends SymfonyConstraint
      */
     protected $merchantProductRepository;
 
-    /**
-     * @param \Spryker\Zed\MerchantProduct\Persistence\MerchantProductRepositoryInterface $merchantProductRepository
-     */
     public function __construct(MerchantProductRepositoryInterface $merchantProductRepository)
     {
         $this->merchantProductRepository = $merchantProductRepository;
@@ -32,25 +29,16 @@ class ProductAbstractBelongsToMerchantConstraint extends SymfonyConstraint
         parent::__construct();
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantProduct\Persistence\MerchantProductRepositoryInterface
-     */
     public function getMerchantProductRepository(): MerchantProductRepositoryInterface
     {
         return $this->merchantProductRepository;
     }
 
-    /**
-     * @return string
-     */
     public function getMessage(): string
     {
         return static::MESSAGE;
     }
 
-    /**
-     * @return string
-     */
     public function getTargets(): string
     {
         return static::CLASS_CONSTRAINT;

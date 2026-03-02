@@ -36,11 +36,6 @@ class MerchantProductValidator implements MerchantProductValidatorInterface
         $this->merchantProductConstraints = $merchantProductConstraints;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductTransfer $merchantProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\ValidationResponseTransfer
-     */
     public function validateMerchantProduct(MerchantProductTransfer $merchantProductTransfer): ValidationResponseTransfer
     {
         $validationResponseTransfer = (new ValidationResponseTransfer())->setIsSuccess(true);

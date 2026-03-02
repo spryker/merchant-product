@@ -19,19 +19,11 @@ class ShoppingListItemExpander implements ShoppingListItemExpanderInterface
      */
     protected $merchantProductRepository;
 
-    /**
-     * @param \Spryker\Zed\MerchantProduct\Persistence\MerchantProductRepositoryInterface $merchantProductRepository
-     */
     public function __construct(MerchantProductRepositoryInterface $merchantProductRepository)
     {
         $this->merchantProductRepository = $merchantProductRepository;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShoppingListItemCollectionTransfer $shoppingListItemCollectionTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShoppingListItemCollectionTransfer
-     */
     public function expandShoppingListItemCollectionWithMerchantReference(
         ShoppingListItemCollectionTransfer $shoppingListItemCollectionTransfer
     ): ShoppingListItemCollectionTransfer {
@@ -63,11 +55,6 @@ class ShoppingListItemExpander implements ShoppingListItemExpanderInterface
         return $shoppingListItemCollectionTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShoppingListItemCollectionTransfer $shoppingListItemCollectionTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantProductCriteriaTransfer
-     */
     protected function getMerchantProductCriteriaTransfer(
         ShoppingListItemCollectionTransfer $shoppingListItemCollectionTransfer
     ): MerchantProductCriteriaTransfer {
@@ -82,11 +69,6 @@ class ShoppingListItemExpander implements ShoppingListItemExpanderInterface
         return $merchantProductCriteriaTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductCollectionTransfer $merchantProductCollectionTransfer
-     *
-     * @return array
-     */
     protected function getMerchantReferencesIndexedByProductConcreteSku(
         MerchantProductCollectionTransfer $merchantProductCollectionTransfer
     ): array {

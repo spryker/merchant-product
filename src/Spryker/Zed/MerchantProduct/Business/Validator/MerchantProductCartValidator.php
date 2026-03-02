@@ -41,19 +41,11 @@ class MerchantProductCartValidator implements MerchantProductCartValidatorInterf
      */
     protected $merchantProductRepository;
 
-    /**
-     * @param \Spryker\Zed\MerchantProduct\Persistence\MerchantProductRepositoryInterface $merchantProductRepository
-     */
     public function __construct(MerchantProductRepositoryInterface $merchantProductRepository)
     {
         $this->merchantProductRepository = $merchantProductRepository;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\CartPreCheckResponseTransfer
-     */
     public function validateCartChange(CartChangeTransfer $cartChangeTransfer): CartPreCheckResponseTransfer
     {
         $concreteSkus = $this->extractMerchantProductConcreteSkus($cartChangeTransfer);
@@ -128,11 +120,6 @@ class MerchantProductCartValidator implements MerchantProductCartValidatorInterf
         return $merchantProductConcreteSkus;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     *
-     * @return bool
-     */
     protected function isMerchantProduct(ItemTransfer $itemTransfer): bool
     {
         if (!$itemTransfer->getMerchantReference()) {

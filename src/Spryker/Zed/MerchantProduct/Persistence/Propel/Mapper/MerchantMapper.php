@@ -16,23 +16,11 @@ use Propel\Runtime\Collection\Collection;
 
 class MerchantMapper
 {
-    /**
-     * @param \Orm\Zed\Merchant\Persistence\SpyMerchant $merchantEntity
-     * @param \Generated\Shared\Transfer\MerchantTransfer $merchantTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantTransfer
-     */
     public function mapMerchantEntityToMerchantTransfer(SpyMerchant $merchantEntity, MerchantTransfer $merchantTransfer): MerchantTransfer
     {
         return $merchantTransfer->fromArray($merchantEntity->toArray(), true);
     }
 
-    /**
-     * @param \Orm\Zed\MerchantProduct\Persistence\SpyMerchantProductAbstract $merchantProductAbstractEntity
-     * @param \Generated\Shared\Transfer\MerchantProductAbstractTransfer $merchantProductAbstractTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantProductAbstractTransfer
-     */
     public function mapMerchantProductAbstractEntityToMerchantProductAbstractTransfer(
         SpyMerchantProductAbstract $merchantProductAbstractEntity,
         MerchantProductAbstractTransfer $merchantProductAbstractTransfer

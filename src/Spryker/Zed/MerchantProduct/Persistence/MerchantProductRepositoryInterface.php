@@ -16,18 +16,8 @@ use Generated\Shared\Transfer\MerchantTransfer;
 
 interface MerchantProductRepositoryInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantTransfer|null
-     */
     public function findMerchant(MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer): ?MerchantTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantProductCollectionTransfer
-     */
     public function get(MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer): MerchantProductCollectionTransfer;
 
     /**
@@ -37,20 +27,10 @@ interface MerchantProductRepositoryInterface
      */
     public function getConcreteProductSkuMerchantReferenceMap(array $concreteSku): array;
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantProductTransfer|null
-     */
     public function findMerchantProduct(
         MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer
     ): ?MerchantProductTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductAbstractCriteriaTransfer $merchantProductAbstractCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantProductAbstractCollectionTransfer
-     */
     public function getMerchantProductAbstractCollection(
         MerchantProductAbstractCriteriaTransfer $merchantProductAbstractCriteriaTransfer
     ): MerchantProductAbstractCollectionTransfer;

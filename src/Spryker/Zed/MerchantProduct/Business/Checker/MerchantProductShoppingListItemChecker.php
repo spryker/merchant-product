@@ -38,20 +38,12 @@ class MerchantProductShoppingListItemChecker implements MerchantProductShoppingL
      */
     protected $merchantFacade;
 
-    /**
-     * @param \Spryker\Zed\MerchantProduct\Dependency\Facade\MerchantProductToMerchantFacadeInterface $merchantFacade
-     */
     public function __construct(
         MerchantProductToMerchantFacadeInterface $merchantFacade
     ) {
         $this->merchantFacade = $merchantFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShoppingListItemTransfer $shoppingListItemTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShoppingListPreAddItemCheckResponseTransfer
-     */
     public function check(ShoppingListItemTransfer $shoppingListItemTransfer): ShoppingListPreAddItemCheckResponseTransfer
     {
         $shoppingListPreAddItemCheckResponseTransfer = (new ShoppingListPreAddItemCheckResponseTransfer());
@@ -88,11 +80,6 @@ class MerchantProductShoppingListItemChecker implements MerchantProductShoppingL
         return $shoppingListPreAddItemCheckResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShoppingListItemTransfer $shoppingListItemTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantTransfer|null
-     */
     protected function findMerchantTransfer(ShoppingListItemTransfer $shoppingListItemTransfer): ?MerchantTransfer
     {
         $merchantCriteriaTransfer = (new MerchantCriteriaTransfer())

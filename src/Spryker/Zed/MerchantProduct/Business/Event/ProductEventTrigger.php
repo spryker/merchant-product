@@ -22,21 +22,12 @@ class ProductEventTrigger implements ProductEventTriggerInterface
      */
     protected const CHUNK_SIZE = 1000;
 
-    /**
-     * @param \Spryker\Zed\MerchantProduct\Persistence\MerchantProductRepositoryInterface $repository
-     * @param \Spryker\Zed\MerchantProduct\Dependency\Facade\MerchantProductToEventFacadeInterface $eventFacade
-     */
     public function __construct(
         protected MerchantProductRepositoryInterface $repository,
         protected MerchantProductToEventFacadeInterface $eventFacade
     ) {
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer
-     *
-     * @return void
-     */
     public function trigger(MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer): void
     {
         if (!$merchantProductCriteriaTransfer->getMerchantIds()) {
