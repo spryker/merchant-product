@@ -219,6 +219,23 @@ interface MerchantProductFacadeInterface
 
     /**
      * Specification:
+     * - Updates the merchant–product abstract association based on `MerchantProductTransfer.idMerchant`.
+     * - Requires `MerchantProductTransfer.idProductAbstract` to be set.
+     * - Creates a new association if none exists and `MerchantProductTransfer.idMerchant` is set.
+     * - Deletes the existing association if `MerchantProductTransfer.idMerchant` is null.
+     * - Replaces the association if a different merchant is assigned.
+     * - Does nothing if the same merchant is already assigned.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\MerchantProductTransfer $merchantProductTransfer
+     *
+     * @return \Generated\Shared\Transfer\MerchantProductTransfer
+     */
+    public function updateMerchantProduct(MerchantProductTransfer $merchantProductTransfer): MerchantProductTransfer;
+
+    /**
+     * Specification:
      * - Requires `CartReorderTransfer.orderItems.idSalesOrderItem` to be set.
      * - Requires `CartReorderTransfer.orderItems.sku` to be set.
      * - Requires `CartReorderTransfer.orderItems.quantity` to be set.

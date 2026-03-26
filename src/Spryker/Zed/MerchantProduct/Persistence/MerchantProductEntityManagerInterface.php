@@ -12,4 +12,8 @@ use Generated\Shared\Transfer\MerchantProductTransfer;
 interface MerchantProductEntityManagerInterface
 {
     public function create(MerchantProductTransfer $merchantProductTransfer): MerchantProductTransfer;
+
+    public function update(MerchantProductTransfer $merchantProductTransfer): MerchantProductTransfer;
+
+    public function delete(MerchantProductTransfer $merchantProductTransfer): void;
 }

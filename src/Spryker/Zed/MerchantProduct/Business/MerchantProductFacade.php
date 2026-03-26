@@ -242,6 +242,18 @@ class MerchantProductFacade extends AbstractFacade implements MerchantProductFac
      * {@inheritDoc}
      *
      * @api
+     */
+    public function updateMerchantProduct(MerchantProductTransfer $merchantProductTransfer): MerchantProductTransfer
+    {
+        return $this->getFactory()
+            ->createMerchantProductUpdater()
+            ->updateMerchantProduct($merchantProductTransfer);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
      *
      * @param \Generated\Shared\Transfer\CartReorderTransfer $cartReorderTransfer
      *

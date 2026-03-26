@@ -18,6 +18,8 @@ use Spryker\Zed\MerchantProduct\Business\Hydrator\CartReorderItemHydrator;
 use Spryker\Zed\MerchantProduct\Business\Hydrator\CartReorderItemHydratorInterface;
 use Spryker\Zed\MerchantProduct\Business\Reader\MerchantProductReader;
 use Spryker\Zed\MerchantProduct\Business\Reader\MerchantProductReaderInterface;
+use Spryker\Zed\MerchantProduct\Business\Updater\MerchantProductUpdater;
+use Spryker\Zed\MerchantProduct\Business\Updater\MerchantProductUpdaterInterface;
 use Spryker\Zed\MerchantProduct\Business\Validator\Constraint\ProductAbstractBelongsToMerchantConstraint;
 use Spryker\Zed\MerchantProduct\Business\Validator\MerchantProductCartValidator;
 use Spryker\Zed\MerchantProduct\Business\Validator\MerchantProductCartValidatorInterface;
@@ -51,6 +53,14 @@ class MerchantProductBusinessFactory extends AbstractBusinessFactory
         return new MerchantProductReader(
             $this->getRepository(),
             $this->getProductFacade(),
+        );
+    }
+
+    public function createMerchantProductUpdater(): MerchantProductUpdaterInterface
+    {
+        return new MerchantProductUpdater(
+            $this->getEntityManager(),
+            $this->getRepository(),
         );
     }
 
