@@ -252,4 +252,17 @@ interface MerchantProductFacadeInterface
      * @return \Generated\Shared\Transfer\CartReorderTransfer
      */
     public function hydrateCartReorderItemsWithMerchantReference(CartReorderTransfer $cartReorderTransfer): CartReorderTransfer;
+
+    /**
+     * Specification:
+     * - Returns a map of concrete product SKU to merchant reference for the given concrete product SKUs.
+     * - SKUs not associated with any merchant are omitted from the result.
+     *
+     * @api
+     *
+     * @param array<string> $concreteProductSkus
+     *
+     * @return array<string, string> Keys are concrete product SKUs, values are merchant references.
+     */
+    public function getConcreteProductSkuMerchantReferenceMap(array $concreteProductSkus): array;
 }

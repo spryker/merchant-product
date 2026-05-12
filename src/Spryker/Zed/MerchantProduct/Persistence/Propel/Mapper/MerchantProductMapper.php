@@ -24,6 +24,11 @@ class MerchantProductMapper
      */
     protected $utilEncodingService;
 
+    /**
+     * @var array<int, \Generated\Shared\Transfer\LocaleTransfer>
+     */
+    protected static array $localeCache = [];
+
     public function __construct(MerchantProductToUtilEncodingServiceInterface $utilEncodingService)
     {
         $this->utilEncodingService = $utilEncodingService;
@@ -94,9 +99,7 @@ class MerchantProductMapper
             true,
         );
 
-        $localizedAttributesTransfer->setLocale(
-            $this->mapLocaleEntityToTransfer($productLocalizedAttributesEntity->getLocale(), new LocaleTransfer()),
-        );
+        $localizedAttributesTransfer->setLocale($this->getLocaleTransfer($productLocalizedAttributesEntity));
 
         return $localizedAttributesTransfer;
     }
@@ -107,5 +110,14 @@ class MerchantProductMapper
             $localeEntity->toArray(),
             true,
         );
+    }
+
+    protected function getLocaleTransfer(SpyProductLocalizedAttributes $productLocalizedAttributesEntity): LocaleTransfer
+    {
+        if (!isset(static::$localeCache[$productLocalizedAttributesEntity->getFkLocale()])) {
+            static::$localeCache[$productLocalizedAttributesEntity->getFkLocale()] = $this->mapLocaleEntityToTransfer($productLocalizedAttributesEntity->getLocale(), new LocaleTransfer());
+        }
+
+        return static::$localeCache[$productLocalizedAttributesEntity->getFkLocale()];
     }
 }

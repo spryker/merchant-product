@@ -265,4 +265,18 @@ class MerchantProductFacade extends AbstractFacade implements MerchantProductFac
             ->createCartReorderItemHydrator()
             ->hydrate($cartReorderTransfer);
     }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param array<string> $concreteProductSkus
+     *
+     * @return array<string, string>
+     */
+    public function getConcreteProductSkuMerchantReferenceMap(array $concreteProductSkus): array
+    {
+        return $this->getRepository()->getConcreteProductSkuMerchantReferenceMap($concreteProductSkus);
+    }
 }

@@ -92,13 +92,13 @@ class MerchantProductFacadeTest extends Unit
         // Arrange
         $this->tester->ensureMerchantProductAbstractTableIsEmpty();
         $merchantTransfer = $this->tester->haveMerchant();
-        $productAbstractTransfer = $this->tester->haveProductAbstract();
+        $productConcreteTransfer = $this->tester->haveProduct();
         $this->tester->haveMerchantProduct([
             MerchantProductTransfer::ID_MERCHANT => $merchantTransfer->getIdMerchant(),
-            MerchantProductTransfer::ID_PRODUCT_ABSTRACT => $productAbstractTransfer->getIdProductAbstract(),
+            MerchantProductTransfer::ID_PRODUCT_ABSTRACT => $productConcreteTransfer->getFkProductAbstract(),
         ]);
         $merchantProductCriteriaTransfer = (new MerchantProductCriteriaTransfer())
-            ->setIdProductAbstract($productAbstractTransfer->getIdProductAbstract());
+            ->setIdProductAbstract($productConcreteTransfer->getFkProductAbstract());
 
         // Act
         $merchantProductCollectionTransfer = $this->tester->getFacade()->get($merchantProductCriteriaTransfer);
@@ -112,15 +112,15 @@ class MerchantProductFacadeTest extends Unit
         // Arrange
         $this->tester->ensureMerchantProductAbstractTableIsEmpty();
         $merchantTransfer = $this->tester->haveMerchant();
-        $productAbstractTransfer = $this->tester->haveProductAbstract();
-        $productAbstractTransfer2 = $this->tester->haveProductAbstract();
+        $productConcreteTransfer1 = $this->tester->haveProduct();
+        $productConcreteTransfer2 = $this->tester->haveProduct();
         $merchantProductTransfer1 = $this->tester->haveMerchantProduct([
             MerchantProductTransfer::ID_MERCHANT => $merchantTransfer->getIdMerchant(),
-            MerchantProductTransfer::ID_PRODUCT_ABSTRACT => $productAbstractTransfer->getIdProductAbstract(),
+            MerchantProductTransfer::ID_PRODUCT_ABSTRACT => $productConcreteTransfer1->getFkProductAbstract(),
         ]);
         $merchantProductTransfer2 = $this->tester->haveMerchantProduct([
             MerchantProductTransfer::ID_MERCHANT => $merchantTransfer->getIdMerchant(),
-            MerchantProductTransfer::ID_PRODUCT_ABSTRACT => $productAbstractTransfer2->getIdProductAbstract(),
+            MerchantProductTransfer::ID_PRODUCT_ABSTRACT => $productConcreteTransfer2->getFkProductAbstract(),
         ]);
         $merchantProductCriteriaTransfer = (new MerchantProductCriteriaTransfer())
             ->addMerchantProductAbstractId($merchantProductTransfer1->getIdMerchantProductAbstract())
@@ -139,15 +139,15 @@ class MerchantProductFacadeTest extends Unit
         $this->tester->ensureMerchantProductAbstractTableIsEmpty();
         $merchantTransfer = $this->tester->haveMerchant();
         $merchantTransfer2 = $this->tester->haveMerchant();
-        $productAbstractTransfer = $this->tester->haveProductAbstract();
-        $productAbstractTransfer2 = $this->tester->haveProductAbstract();
+        $productConcreteTransfer1 = $this->tester->haveProduct();
+        $productConcreteTransfer2 = $this->tester->haveProduct();
         $this->tester->haveMerchantProduct([
             MerchantProductTransfer::ID_MERCHANT => $merchantTransfer->getIdMerchant(),
-            MerchantProductTransfer::ID_PRODUCT_ABSTRACT => $productAbstractTransfer->getIdProductAbstract(),
+            MerchantProductTransfer::ID_PRODUCT_ABSTRACT => $productConcreteTransfer1->getFkProductAbstract(),
         ]);
         $this->tester->haveMerchantProduct([
             MerchantProductTransfer::ID_MERCHANT => $merchantTransfer2->getIdMerchant(),
-            MerchantProductTransfer::ID_PRODUCT_ABSTRACT => $productAbstractTransfer2->getIdProductAbstract(),
+            MerchantProductTransfer::ID_PRODUCT_ABSTRACT => $productConcreteTransfer2->getFkProductAbstract(),
         ]);
         $merchantProductCriteriaTransfer = (new MerchantProductCriteriaTransfer())
             ->addIdMerchant($merchantTransfer->getIdMerchant())
@@ -769,26 +769,26 @@ class MerchantProductFacadeTest extends Unit
         $this->tester->ensureMerchantProductAbstractTableIsEmpty();
         $merchantTransfer = $this->tester->haveMerchant();
 
-        $firstProductAbstractTransfer = $this->tester->haveProductAbstract();
-        $secondProductAbstractTransfer = $this->tester->haveProductAbstract();
-        $thirdProductAbstractTransfer = $this->tester->haveProductAbstract();
+        $firstProductConcreteTransfer = $this->tester->haveProduct();
+        $secondProductConcreteTransfer = $this->tester->haveProduct();
+        $thirdProductConcreteTransfer = $this->tester->haveProduct();
 
         $this->tester->haveMerchantProduct([
             MerchantProductTransfer::ID_MERCHANT => $merchantTransfer->getIdMerchant(),
-            MerchantProductTransfer::ID_PRODUCT_ABSTRACT => $firstProductAbstractTransfer->getIdProductAbstract(),
+            MerchantProductTransfer::ID_PRODUCT_ABSTRACT => $firstProductConcreteTransfer->getFkProductAbstract(),
         ]);
         $this->tester->haveMerchantProduct([
             MerchantProductTransfer::ID_MERCHANT => $merchantTransfer->getIdMerchant(),
-            MerchantProductTransfer::ID_PRODUCT_ABSTRACT => $secondProductAbstractTransfer->getIdProductAbstract(),
+            MerchantProductTransfer::ID_PRODUCT_ABSTRACT => $secondProductConcreteTransfer->getFkProductAbstract(),
         ]);
         $this->tester->haveMerchantProduct([
             MerchantProductTransfer::ID_MERCHANT => $merchantTransfer->getIdMerchant(),
-            MerchantProductTransfer::ID_PRODUCT_ABSTRACT => $thirdProductAbstractTransfer->getIdProductAbstract(),
+            MerchantProductTransfer::ID_PRODUCT_ABSTRACT => $thirdProductConcreteTransfer->getFkProductAbstract(),
         ]);
 
         $merchantProductCriteriaTransfer = (new MerchantProductCriteriaTransfer())
-            ->addIdProductAbstract($firstProductAbstractTransfer->getIdProductAbstract())
-            ->addIdProductAbstract($secondProductAbstractTransfer->getIdProductAbstract());
+            ->addIdProductAbstract($firstProductConcreteTransfer->getFkProductAbstract())
+            ->addIdProductAbstract($secondProductConcreteTransfer->getFkProductAbstract());
 
         // Act
         $merchantProductCollectionTransfer = $this->tester->getFacade()->get($merchantProductCriteriaTransfer);
@@ -893,6 +893,76 @@ class MerchantProductFacadeTest extends Unit
         );
 
         $this->assertNull($result);
+    }
+
+    /**
+     * @dataProvider provideConcreteProductSkuMerchantReferenceMapData
+     */
+    public function testGetConcreteProductSkuMerchantReferenceMap(
+        int $merchantProductCount,
+        int $nonMerchantProductCount,
+        bool $appendNonExistentSku,
+        int $expectedMapSize,
+    ): void {
+        // Arrange
+        $this->tester->ensureMerchantProductAbstractTableIsEmpty();
+        $merchantTransfer = $this->tester->haveMerchant();
+
+        $merchantLinkedProducts = [];
+
+        for ($i = 0; $i < $merchantProductCount; $i++) {
+            $product = $this->tester->haveProduct();
+            $this->tester->haveMerchantProduct([
+                MerchantProductTransfer::ID_MERCHANT => $merchantTransfer->getIdMerchant(),
+                MerchantProductTransfer::ID_PRODUCT_ABSTRACT => $product->getFkProductAbstract(),
+            ]);
+            $merchantLinkedProducts[] = $product;
+        }
+
+        $nonMerchantProducts = [];
+
+        for ($i = 0; $i < $nonMerchantProductCount; $i++) {
+            $nonMerchantProducts[] = $this->tester->haveProduct();
+        }
+
+        $skusToQuery = array_merge(
+            array_map(static fn ($product) => $product->getSku(), $merchantLinkedProducts),
+            array_map(static fn ($product) => $product->getSku(), $nonMerchantProducts),
+        );
+
+        if ($appendNonExistentSku) {
+            $skusToQuery[] = 'non-existent-sku';
+        }
+
+        // Act
+        $result = $this->tester->getFacade()->getConcreteProductSkuMerchantReferenceMap($skusToQuery);
+
+        // Assert
+        $this->assertCount($expectedMapSize, $result);
+
+        foreach ($merchantLinkedProducts as $product) {
+            $this->assertArrayHasKey($product->getSku(), $result);
+            $this->assertSame($merchantTransfer->getMerchantReference(), $result[$product->getSku()]);
+        }
+
+        foreach ($nonMerchantProducts as $product) {
+            $this->assertArrayNotHasKey($product->getSku(), $result);
+        }
+    }
+
+    /**
+     * @return array<string, array<mixed>>
+     */
+    public function provideConcreteProductSkuMerchantReferenceMapData(): array
+    {
+        return [
+            'empty input returns empty map' => [0, 0, false, 0],
+            'single merchant-linked sku returns one entry' => [1, 0, false, 1],
+            'multiple merchant-linked skus return all entries' => [3, 0, false, 3],
+            'non-existent sku is omitted from result' => [0, 0, true, 0],
+            'non-merchant-linked skus are omitted from result' => [0, 2, false, 0],
+            'mixed input returns only merchant-linked entries' => [2, 1, true, 2],
+        ];
     }
 
     protected function createMerchantProduct(int $idMerchant, int $idProductAbstract): MerchantProductTransfer

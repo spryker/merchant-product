@@ -48,9 +48,13 @@ class MerchantProductRepository extends AbstractRepository implements MerchantPr
         /** @var \Orm\Zed\MerchantProduct\Persistence\SpyMerchantProductAbstractQuery $merchantProductAbstractQuery */
         $merchantProductAbstractQuery = $this->getFactory()
             ->getMerchantProductAbstractPropelQuery()
+            ->leftJoinWithMerchant()
             ->leftJoinWithProductAbstract()
             ->useProductAbstractQuery()
                 ->leftJoinWithSpyProduct()
+                ->useSpyProductQuery()
+                    ->leftJoinWithSpyProductLocalizedAttributes()
+                ->endUse()
             ->endUse();
 
         $merchantProductAbstractQuery = $this->applyFilters($merchantProductAbstractQuery, $merchantProductCriteriaTransfer);
