@@ -44,7 +44,7 @@ class MerchantProductUpdater implements MerchantProductUpdaterInterface
             return $merchantProductTransfer;
         }
 
-        if ($existingMerchantProduct !== null && $newIdMerchant) {
+        if ($existingMerchantProduct !== null) {
             $this->entityManager->update(
                 $existingMerchantProduct->setIdMerchant($newIdMerchant),
             );
