@@ -7,7 +7,6 @@
 
 namespace Spryker\Zed\MerchantProduct\Communication\Plugin\Publisher;
 
-use Generated\Shared\Transfer\MerchantProductCriteriaTransfer;
 use Spryker\Shared\MerchantProduct\MerchantProductConfig;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\PublisherExtension\Dependency\Plugin\PublisherPluginInterface;
@@ -23,6 +22,8 @@ class MerchantProductPublisherPlugin extends AbstractPlugin implements Publisher
     /**
      * {@inheritDoc}
      *
+     * - Skips merchant events whose modified columns contain none of {@link \Spryker\Zed\MerchantProduct\MerchantProductConfig::getProductAbstractRelevantMerchantColumns()}.
+     * - Does not skip merchant events without modified columns.
      * - Extracts Merchant IDs from event entity transfers.
      * - Retrieves product abstract IDs related to these merchants.
      * - Triggers product abstract events to rebuild merchant product abstracts after merchant changes.
@@ -36,12 +37,7 @@ class MerchantProductPublisherPlugin extends AbstractPlugin implements Publisher
      */
     public function handleBulk(array $eventEntityTransfers, $eventName): void
     {
-        $this->getBusinessFactory()->createProductEventTrigger()->trigger(
-            (new MerchantProductCriteriaTransfer())
-                ->setMerchantIds(
-                    $this->getFactory()->getEventBehaviorFacade()->getEventTransferIds($eventEntityTransfers),
-                ),
-        );
+        $this->getBusinessFactory()->createProductEventTrigger()->triggerByMerchantEvents($eventEntityTransfers);
     }
 
     /**

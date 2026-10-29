@@ -28,6 +28,7 @@ use Spryker\Zed\MerchantProduct\Business\Validator\MerchantProductValidatorInter
 use Spryker\Zed\MerchantProduct\Business\Writer\MerchantProductWriter;
 use Spryker\Zed\MerchantProduct\Business\Writer\MerchantProductWriterInterface;
 use Spryker\Zed\MerchantProduct\Dependency\External\MerchantProductToValidationAdapterInterface;
+use Spryker\Zed\MerchantProduct\Dependency\Facade\MerchantProductToEventBehaviorFacadeInterface;
 use Spryker\Zed\MerchantProduct\Dependency\Facade\MerchantProductToEventFacadeInterface;
 use Spryker\Zed\MerchantProduct\Dependency\Facade\MerchantProductToMerchantFacadeInterface;
 use Spryker\Zed\MerchantProduct\Dependency\Facade\MerchantProductToProductFacadeInterface;
@@ -82,7 +83,17 @@ class MerchantProductBusinessFactory extends AbstractBusinessFactory
 
     public function createProductEventTrigger(): ProductEventTriggerInterface
     {
-        return new ProductEventTrigger($this->getRepository(), $this->getEventFacade());
+        return new ProductEventTrigger(
+            $this->getRepository(),
+            $this->getEventFacade(),
+            $this->getEventBehaviorFacade(),
+            $this->getConfig(),
+        );
+    }
+
+    public function getEventBehaviorFacade(): MerchantProductToEventBehaviorFacadeInterface
+    {
+        return $this->getProvidedDependency(MerchantProductDependencyProvider::FACADE_EVENT_BEHAVIOR);
     }
 
     /**

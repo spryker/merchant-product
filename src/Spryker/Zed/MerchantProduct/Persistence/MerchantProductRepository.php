@@ -18,7 +18,9 @@ use Orm\Zed\Merchant\Persistence\Map\SpyMerchantTableMap;
 use Orm\Zed\MerchantProduct\Persistence\Map\SpyMerchantProductAbstractTableMap;
 use Orm\Zed\MerchantProduct\Persistence\SpyMerchantProductAbstractQuery;
 use Orm\Zed\Product\Persistence\Map\SpyProductTableMap;
+use Propel\Runtime\ActiveQuery\Criteria;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
+use Spryker\Zed\PropelOrm\Business\Model\Formatter\OptimizedSimpleArrayFormatter;
 
 /**
  * @method \Spryker\Zed\MerchantProduct\Persistence\MerchantProductPersistenceFactory getFactory()
@@ -152,6 +154,41 @@ class MerchantProductRepository extends AbstractRepository implements MerchantPr
             ->select([SpyMerchantProductAbstractTableMap::COL_FK_PRODUCT_ABSTRACT])
             ->find()
             ->getData();
+    }
+
+    /**
+     * @param array<int> $merchantIds
+     * @param int $batchSize
+     *
+     * @return iterable<array<int>>
+     */
+    public function iterateProductAbstractIdsByMerchantIds(array $merchantIds, int $batchSize): iterable
+    {
+        foreach ($merchantIds as $idMerchant) {
+            $lastIdMerchantProductAbstract = 0;
+
+            do {
+                /** @var array<array<string, mixed>> $merchantProductAbstractRows */
+                $merchantProductAbstractRows = $this->getFactory()
+                    ->getMerchantProductAbstractPropelQuery()
+                    ->filterByFkMerchant($idMerchant)
+                    ->filterByIdMerchantProductAbstract($lastIdMerchantProductAbstract, Criteria::GREATER_THAN)
+                    ->select([SpyMerchantProductAbstractTableMap::COL_ID_MERCHANT_PRODUCT_ABSTRACT, SpyMerchantProductAbstractTableMap::COL_FK_PRODUCT_ABSTRACT])
+                    ->orderByIdMerchantProductAbstract()
+                    ->setLimit($batchSize)
+                    ->setFormatter(new OptimizedSimpleArrayFormatter())
+                    ->find()
+                    ->getData();
+
+                if (!$merchantProductAbstractRows) {
+                    break;
+                }
+
+                $lastIdMerchantProductAbstract = (int)end($merchantProductAbstractRows)[SpyMerchantProductAbstractTableMap::COL_ID_MERCHANT_PRODUCT_ABSTRACT];
+
+                yield array_map('intval', array_column($merchantProductAbstractRows, SpyMerchantProductAbstractTableMap::COL_FK_PRODUCT_ABSTRACT));
+            } while (count($merchantProductAbstractRows) === $batchSize);
+        }
     }
 
     protected function applyFilters(

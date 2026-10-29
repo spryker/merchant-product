@@ -12,4 +12,11 @@ use Generated\Shared\Transfer\MerchantProductCriteriaTransfer;
 interface ProductEventTriggerInterface
 {
     public function trigger(MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer): void;
+
+    /**
+     * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventEntityTransfers
+     *
+     * @return void
+     */
+    public function triggerByMerchantEvents(array $eventEntityTransfers): void;
 }

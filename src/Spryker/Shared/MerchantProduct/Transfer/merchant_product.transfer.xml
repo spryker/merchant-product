@@ -163,5 +163,6 @@
 
     <transfer name="EventEntity">
         <property name="id" type="int"/>
+        <property name="modifiedColumns" type="array" singular="modifiedColumns"/>
     </transfer>
 </transfers>

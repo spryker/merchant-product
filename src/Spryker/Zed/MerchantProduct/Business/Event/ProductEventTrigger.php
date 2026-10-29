@@ -9,8 +9,10 @@ namespace Spryker\Zed\MerchantProduct\Business\Event;
 
 use Generated\Shared\Transfer\EventEntityTransfer;
 use Generated\Shared\Transfer\MerchantProductCriteriaTransfer;
-use Spryker\Shared\MerchantProduct\MerchantProductConfig;
+use Spryker\Shared\MerchantProduct\MerchantProductConfig as SharedMerchantProductConfig;
+use Spryker\Zed\MerchantProduct\Dependency\Facade\MerchantProductToEventBehaviorFacadeInterface;
 use Spryker\Zed\MerchantProduct\Dependency\Facade\MerchantProductToEventFacadeInterface;
+use Spryker\Zed\MerchantProduct\MerchantProductConfig;
 use Spryker\Zed\MerchantProduct\Persistence\MerchantProductRepositoryInterface;
 
 class ProductEventTrigger implements ProductEventTriggerInterface
@@ -24,8 +26,26 @@ class ProductEventTrigger implements ProductEventTriggerInterface
 
     public function __construct(
         protected MerchantProductRepositoryInterface $repository,
-        protected MerchantProductToEventFacadeInterface $eventFacade
+        protected MerchantProductToEventFacadeInterface $eventFacade,
+        protected MerchantProductToEventBehaviorFacadeInterface $eventBehaviorFacade,
+        protected MerchantProductConfig $merchantProductConfig
     ) {
+    }
+
+    /**
+     * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventEntityTransfers
+     *
+     * @return void
+     */
+    public function triggerByMerchantEvents(array $eventEntityTransfers): void
+    {
+        $this->trigger(
+            (new MerchantProductCriteriaTransfer())->setMerchantIds(
+                $this->eventBehaviorFacade->getEventTransferIds(
+                    $this->filterProductAbstractRelevantMerchantEvents($eventEntityTransfers),
+                ),
+            ),
+        );
     }
 
     public function trigger(MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer): void
@@ -34,8 +54,14 @@ class ProductEventTrigger implements ProductEventTriggerInterface
             return;
         }
 
-        $productAbstractIds = $this->repository->getProductAbstractIdsByMerchantIds($merchantProductCriteriaTransfer->getMerchantIds());
-        $this->triggerProductAbstractPublishEvent($productAbstractIds);
+        $productAbstractIdIterator = $this->repository->iterateProductAbstractIdsByMerchantIds(
+            $merchantProductCriteriaTransfer->getMerchantIds(),
+            static::CHUNK_SIZE,
+        );
+
+        foreach ($productAbstractIdIterator as $productAbstractIds) {
+            $this->triggerProductAbstractPublishEvent($productAbstractIds);
+        }
     }
 
     /**
@@ -54,9 +80,26 @@ class ProductEventTrigger implements ProductEventTriggerInterface
             }
 
             $this->eventFacade->triggerBulk(
-                MerchantProductConfig::PRODUCT_ABSTRACT_PUBLISH,
+                SharedMerchantProductConfig::PRODUCT_ABSTRACT_PUBLISH,
                 $eventEntityTransfers,
             );
         }
+    }
+
+    /**
+     * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventEntityTransfers
+     *
+     * @return list<\Generated\Shared\Transfer\EventEntityTransfer>
+     */
+    protected function filterProductAbstractRelevantMerchantEvents(array $eventEntityTransfers): array
+    {
+        $relevantMerchantColumns = $this->merchantProductConfig->getProductAbstractRelevantMerchantColumns();
+
+        // An event without modified columns stands for a change of the whole merchant, for example a republish.
+        return array_values(array_filter(
+            $eventEntityTransfers,
+            fn (EventEntityTransfer $eventEntityTransfer): bool => !$eventEntityTransfer->getModifiedColumns()
+                || array_intersect($eventEntityTransfer->getModifiedColumns(), $relevantMerchantColumns) !== [],
+        ));
     }
 }

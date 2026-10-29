@@ -41,4 +41,14 @@ interface MerchantProductRepositoryInterface
      * @return array<int>
      */
     public function getProductAbstractIdsByMerchantIds(array $merchantIds): array;
+
+    /**
+     * Reads the merchant product abstracts of each given merchant in pages of `$batchSize`, ordered by `id_merchant_product_abstract`, and yields their abstract product IDs.
+     *
+     * @param array<int> $merchantIds
+     * @param int $batchSize
+     *
+     * @return iterable<array<int>>
+     */
+    public function iterateProductAbstractIdsByMerchantIds(array $merchantIds, int $batchSize): iterable;
 }

@@ -59,6 +59,7 @@ class MerchantProductDependencyProvider extends AbstractBundleDependencyProvider
         $container = $this->addValidationAdapter($container);
         $container = $this->addMerchantFacade($container);
         $container = $this->addEventFacade($container);
+        $container = $this->addEventBehaviorFacade($container);
 
         return $container;
     }
