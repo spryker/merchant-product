@@ -187,7 +187,9 @@ class MerchantProductRepository extends AbstractRepository implements MerchantPr
                 $lastIdMerchantProductAbstract = (int)end($merchantProductAbstractRows)[SpyMerchantProductAbstractTableMap::COL_ID_MERCHANT_PRODUCT_ABSTRACT];
 
                 yield array_map('intval', array_column($merchantProductAbstractRows, SpyMerchantProductAbstractTableMap::COL_FK_PRODUCT_ABSTRACT));
-            } while (count($merchantProductAbstractRows) === $batchSize);
+
+                $hasNextBatch = count($merchantProductAbstractRows) === $batchSize;
+            } while ($hasNextBatch);
         }
     }
 
